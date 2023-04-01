@@ -25,7 +25,7 @@ ButtonPack = ReplyKeyboardMarkup(Button, resize_keyboard=True)
 # ----------------------------------------------------------------------------------------
 
 def generate_fake_user(gender=None):
-    url = "https://fake-users6.p.rapidapi.com/"
+    url = "https://randomuser.me/api/"
     querystring = {"gender": gender}
     headers = {
         'x-rapidapi-host': "fake-users6.p.rapidapi.com",
@@ -111,14 +111,15 @@ def TextHandler(update: Update, context: CallbackContext) -> None:
 
 
 def main():
-    TOKEN = "YOUR TELEGRAM BOT TOKEN"
-    APP_NAME = 'https://<YOUR HEROKU APP NAME>.herokuapp.com/'
+    TOKEN = "5698336915:AAEuZBPT_XHukOPTPBuqWf9LLniZf8nipZo"
+    APP_NAME = 'https://ano-tele-acc-bot.herokuapp.com/'
 
     updater = Updater(TOKEN, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(MessageHandler(Filters.all & ~Filters.command, TextHandler, run_async=True))
 
     updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN, webhook_url=APP_NAME + TOKEN)
+    # updater.start_polling()
     updater.idle()
 
 if __name__ == '__main__':
